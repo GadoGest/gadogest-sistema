@@ -105,6 +105,8 @@ Todas sujeitas ao conflito T-00 (plataforma).
 | D-09 | **Exames ficam fora do MVP.** Resolve Q-24 e K-05 para o MVP. | DECIDIDO | 16/11/2026 | Usuário (Kadu) | — |
 | D-10 | Código do sistema (app mobile + painel web + backend) no repositório **`GadoGest/gadogest-sistema`**, separado do site. Resolve K-07 e Q-29. | DECIDIDO | 16/11/2026 | Usuário (Kadu) | — |
 | D-11 | Repositório do **site** (`gadogest.com.br`, Vercel) é **`GadoGest/gadogest-site`**. | DECIDIDO | 16/11/2026 | Usuário (Kadu) | C-07 |
+| D-12 | **Fluxo de trabalho**: uma branch por tarefa (`front/`, `back/`, `docs/`), Pull Request revisado pelo outro antes de entrar na `main`; só documentação vai direto para a `main`; contrato front/back pelo esquema do banco + tipos TS gerados em `packages/shared/`; decisões sempre em `docs/DECISOES.md`. Detalhes em `docs/FLUXO-DE-TRABALHO.md`. | DECIDIDO | 16/11/2026 | Usuário (Kadu) | — |
+| D-13 | **Divisão da equipe**: Kadu no front-end (`apps/mobile/`, `apps/web/`); Pedro no back-end (`supabase/`). Estrutura de pastas monorepo planejada, criada a partir da Etapa 0. Cada um commita com a própria conta GitHub. Responde parcialmente Q-14 e K-03. | DECIDIDO | 16/11/2026 | Usuário (Kadu) | — |
 
 Verificação de 16/11/2026: não há código do sistema no Google Drive (`BackEnd/`, `FrontEnd/` e `GadoGest-Arquitetura/` vazias). Nada está implementado (responde Q-22 para esta data).
 

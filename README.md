@@ -14,3 +14,4 @@ app mobile para o campo (Android primeiro) + painel web para o gestor.
 | [`docs/DECISOES.md`](docs/DECISOES.md) | Decisões tomadas, conflitos e pendências |
 | [`docs/ROADMAP.md`](docs/ROADMAP.md) | Etapas de desenvolvimento |
 | [`docs/CONTEXTO.md`](docs/CONTEXTO.md) | Origem, equipe e modelo de negócio |
+| [`docs/FLUXO-DE-TRABALHO.md`](docs/FLUXO-DE-TRABALHO.md) | Como a equipe trabalha: front/back, branches, PRs e rotina |

@@ -200,13 +200,18 @@ Português BR, claro, objetivo, profissional; explique decisões de forma compre
 
 ---
 
-## 11. Git e commits
+## 11. Git, commits e trabalho em equipe
 
-- Commits devem sair com o **usuário GitHub dele (`Kadu-cell`)**, usando o **e-mail noreply do GitHub**, **sem a linha `Co-Authored-By: Claude`**. Configure `user.name`/`user.email` de acordo antes de commitar e não acrescente trailers de coautoria.
+**Leia `docs/FLUXO-DE-TRABALHO.md` antes de criar branches, commits ou PRs.** Resumo obrigatório:
+
+- **Áreas:** Kadu = front (`apps/mobile/`, `apps/web/`); Pedro = back (`supabase/`); `packages/shared/` e `docs/` são compartilhados. **Não altere a área do outro desenvolvedor**: se a tarefa exigir, avise e sugira pedir ao responsável.
+- **Branches:** nunca commitar código direto na `main`. Uma branch por tarefa (`front/...`, `back/...`, `docs/...`), PR para a `main`, revisão do outro. Só documentação pode ir direto para a `main`.
+- **Contrato front/back:** o esquema do banco (migrations em `supabase/migrations/`) e os tipos TypeScript gerados em `packages/shared/`. Nunca editar os tipos gerados à mão.
+- **Ao começar uma sessão:** sugerir `git pull` na `main` e resumir o que mudou. **Toda decisão nova** vai para `docs/DECISOES.md` no mesmo PR.
+- **Identidade:** cada desenvolvedor commita com a **própria** conta GitHub (configurada com `git config` local). Antes de commitar, confira `git config user.name`; **nunca** commite em nome de outra pessoa. Se não estiver configurado, pergunte.
+- **Kadu (`Kadu-cell`):** e-mail noreply `316351106+Kadu-cell@users.noreply.github.com`, **sem a linha `Co-Authored-By: Claude`** e sem trailers de coautoria.
 - Repositório do sistema: `GadoGest/gadogest-sistema` (branch `main`).
 - Repositório do site: `GadoGest/gadogest-site`, deploy na Vercel. A reformulação do site foi combinada em branch próprio `reformulacao` (criado a partir da `main`), conferindo pela **prévia da Vercel** antes de unir à `main`.
-
-> E-mail noreply usado nos commits: `316351106+Kadu-cell@users.noreply.github.com` (configurado só neste repositório, via `git config user.email`).
 
 ---
 
@@ -214,11 +219,12 @@ Português BR, claro, objetivo, profissional; explique decisões de forma compre
 
 Lista completa e numerada em `docs/DECISOES.md` (seções "Conflitos" e "Pendências").
 
-- **[CONFLITO]** Desktop (Electron/Prisma) × mobile+web (Expo/Supabase/PowerSync/Next.js).
-- **[CONFLITO]** Módulos descritos como "integrados" no Project × plano técnico que os trata como planejados/pós-MVP (financeiro, reprodução, alimentação, estoque, relatórios).
-- **[CONFLITO]** Equipe de "três pessoas" no plano técnico × quatro integrantes na equipe do projeto (um só desenvolvedor identificado).
-- **[A VERIFICAR]** Onde está o código do sistema e o que já foi implementado.
-- **[PENDENTE]** 20 perguntas do plano técnico (login por e-mail ou telefone; assinatura por conta ou fazenda; limite de aparelhos; funcionário em várias fazendas; aplicação em lote; cobrança manual/automática; animais sem brinco; catálogo de produtos sanitários; iPhone no piloto; telas no Figma; experiência técnica da equipe; TypeScript em todas as camadas; criptografia do SQLite; custo do PowerSync; política de licença vencida; resolução de brinco duplicado; matriz de permissões; clientes iniciais (contas ou fazendas); tamanho da maior propriedade; orçamento mensal de infraestrutura).
+**Resolvidos em 16/11/2026** (ver D-01 a D-13): plataforma (mobile + web), local do código, login, funcionário em uma fazenda, aplicação em lote, financeiro e exames fora do MVP, brinco duplicado/opcional, catálogo sanitário, repositório do site, fluxo de trabalho e divisão front/back. Em 16/11/2026 **não havia código do sistema**.
+
+Ainda abertos:
+- **[CONFLITO]** Módulos descritos como "integrados" no Project × plano técnico que os trata como planejados/pós-MVP (reprodução, alimentação, estoque, relatórios).
+- **[CONFLITO]** Cronograma do plano para "três pessoas" × equipe real (2 desenvolvedores: Kadu no front, Pedro no back).
+- **[PENDENTE]** Matriz de permissões (Q-20); criptografia do SQLite (Q-16) e custo do PowerSync (Q-17), a validar na Etapa 0; política de licença vencida (Q-18); assinatura/limite de aparelhos/cobrança (Q-05, Q-06, Q-09); iPhone no piloto (Q-12); Figma (Q-13); TypeScript em todas as camadas (Q-15); clientes iniciais, tamanho da maior propriedade e orçamento (Q-01 a Q-03).
 - **Tensão a decidir:** apagar dados locais de aparelho revogado × regra de nunca perder registro silenciosamente (e se houver dados ainda não sincronizados?).
 
 ---
@@ -232,5 +238,6 @@ Lista completa e numerada em `docs/DECISOES.md` (seções "Conflitos" e "Pendên
 | `docs/CONTEXTO.md` | Origem, histórico, equipe, validação, pitch, diferenciais, modelo de negócio |
 | `docs/ROADMAP.md` | O que existe, em andamento, a desenvolver, próximas etapas |
 | `docs/DECISOES.md` | Registro de decisões, conflitos e pendências |
+| `docs/FLUXO-DE-TRABALHO.md` | Divisão front/back, branches, PRs, contrato pelo banco, rotina e comunicação da equipe |
 
 Mantenha estes arquivos atualizados quando decisões forem tomadas e funcionalidades implementadas, **sempre diferenciando planejado, decidido e existente**.
