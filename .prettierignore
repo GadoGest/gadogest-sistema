@@ -1,0 +1,16 @@
+node_modules
+package-lock.json
+dist
+build
+.expo
+.next
+android
+ios
+*.md
+
+# Gerado a partir do banco (nunca editar nem reformatar à mão)
+packages/shared/src/database.types.ts
+
+# Área do back-end
+supabase
+powersync
