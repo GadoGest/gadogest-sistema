@@ -1,0 +1,17 @@
+# Regras de sincronização do PowerSync (Sync Streams) — área do back-end (D-29).
+# Cada usuário recebe só os registros das fazendas em que tem vínculo ativo.
+# As colunas espelham apps/mobile/src/banco/esquema.ts (o "id" é obrigatório).
+# Registros com apagado_em também descem: o app decide se mostra ou esconde.
+config:
+  edition: 3
+
+streams:
+  prova_offline:
+    auto_subscribe: true
+    query: |
+      SELECT id, fazenda_id, brinco, nome, versao, criado_em, atualizado_em, apagado_em
+      FROM teste_animais
+      WHERE fazenda_id IN (
+        SELECT fazenda_id FROM vinculos
+        WHERE usuario_id = auth.user_id() AND apagado_em IS NULL
+      )

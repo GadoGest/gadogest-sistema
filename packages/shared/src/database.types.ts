@@ -151,6 +151,76 @@ export type Database = {
           },
         ]
       }
+      pendencias_sincronizacao: {
+        Row: {
+          criado_em: string
+          dados_aparelho: Json
+          dados_servidor: Json | null
+          enviado_por: string | null
+          fazenda_id: string | null
+          id: string
+          operacao: string
+          registro_id: string
+          resolucao: string | null
+          resolvido_em: string | null
+          resolvido_por: string | null
+          tabela: string
+          tipo: string
+        }
+        Insert: {
+          criado_em?: string
+          dados_aparelho: Json
+          dados_servidor?: Json | null
+          enviado_por?: string | null
+          fazenda_id?: string | null
+          id?: string
+          operacao: string
+          registro_id: string
+          resolucao?: string | null
+          resolvido_em?: string | null
+          resolvido_por?: string | null
+          tabela: string
+          tipo: string
+        }
+        Update: {
+          criado_em?: string
+          dados_aparelho?: Json
+          dados_servidor?: Json | null
+          enviado_por?: string | null
+          fazenda_id?: string | null
+          id?: string
+          operacao?: string
+          registro_id?: string
+          resolucao?: string | null
+          resolvido_em?: string | null
+          resolvido_por?: string | null
+          tabela?: string
+          tipo?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pendencias_sincronizacao_enviado_por_fkey"
+            columns: ["enviado_por"]
+            isOneToOne: false
+            referencedRelation: "perfis"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "pendencias_sincronizacao_fazenda_id_fkey"
+            columns: ["fazenda_id"]
+            isOneToOne: false
+            referencedRelation: "fazendas"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "pendencias_sincronizacao_resolvido_por_fkey"
+            columns: ["resolvido_por"]
+            isOneToOne: false
+            referencedRelation: "perfis"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       perfis: {
         Row: {
           atualizado_em: string
@@ -171,6 +241,57 @@ export type Database = {
           nome?: string
         }
         Relationships: []
+      }
+      teste_animais: {
+        Row: {
+          apagado_em: string | null
+          atualizado_em: string
+          brinco: string | null
+          criado_em: string
+          criado_por: string | null
+          fazenda_id: string
+          id: string
+          nome: string | null
+          versao: number
+        }
+        Insert: {
+          apagado_em?: string | null
+          atualizado_em?: string
+          brinco?: string | null
+          criado_em?: string
+          criado_por?: string | null
+          fazenda_id: string
+          id: string
+          nome?: string | null
+          versao?: number
+        }
+        Update: {
+          apagado_em?: string | null
+          atualizado_em?: string
+          brinco?: string | null
+          criado_em?: string
+          criado_por?: string | null
+          fazenda_id?: string
+          id?: string
+          nome?: string | null
+          versao?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "teste_animais_criado_por_fkey"
+            columns: ["criado_por"]
+            isOneToOne: false
+            referencedRelation: "perfis"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "teste_animais_fazenda_id_fkey"
+            columns: ["fazenda_id"]
+            isOneToOne: false
+            referencedRelation: "fazendas"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       vinculos: {
         Row: {
@@ -232,7 +353,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      sincronizar_teste_animal: {
+        Args: { p_dados?: Json; p_id: string; p_operacao: string }
+        Returns: Json
+      }
     }
     Enums: {
       papel_vinculo: "gestor" | "funcionario"

@@ -54,8 +54,8 @@ Cronograma original: ~**9 semanas**, equipe de 3 pessoas. **Substituído em 16/1
 
 | Etapa | Entrega | Status |
 |---|---|---|
-| 0 | Fundação e prova técnica do offline | **Em andamento (front)**: monorepo e app Expo criados; development build rodando num Android real; PowerSync + SQLite gravando localmente com UUID gerado no aparelho e fila de pendentes (16/11/2026, branch `front/prova-offline-app`). **Falta**: sincronizar com o Supabase (depende do back, D-33), modo avião de ponta a ponta, idempotência, RLS, conflito de edição (D-22), criptografia, 5.000 animais e custo |
-| 1 | Login, contas, fazendas e permissões | **Em andamento (back)**: migration da fundação + RLS provisório (D-26) + testes pgTAP na branch `back/fundacao-supabase`; projeto `gadogest-dev` (D-27) |
+| 0 | Fundação e prova técnica do offline | **Em andamento (front)**: monorepo e app Expo criados; development build rodando num Android real; PowerSync + SQLite gravando localmente com UUID gerado no aparelho e fila de pendentes (16/11/2026, branch `front/prova-offline-app`). **Back (17/11/2026, branch `back/prova-offline`)**: tabela `teste_animais`, função de envio idempotente com controle de versão e pendências de conflito (D-36), RLS, `powersync_role` e publicação aplicados no `gadogest-dev`; 30 testes pgTAP passando no banco; regras em `powersync/sync-config.yaml`. **Falta**: instância do PowerSync ligada ao `gadogest-dev`, login e `uploadData` no app (front), modo avião de ponta a ponta no aparelho, criptografia, 5.000 animais e custo |
+| 1 | Login, contas, fazendas e permissões | **Em andamento (back)**: fundação no `gadogest-dev` (contas, fazendas, perfis, vínculos, aparelhos) com RLS provisório (D-26) e 20 testes pgTAP, já na `main` (PR #1, 17/11/2026); projeto `gadogest-dev` (D-27). **Falta**: convite de usuário por e-mail, proteção do último gestor, matriz completa (Q-20) |
 | 2 | Rebanho, lotes e movimentações | Planejada |
 | 3 | Saúde, sanidade e manejos | Planejada |
 | 4 | Pesagens e GMD | Planejada |
