@@ -10,7 +10,7 @@
 | Área | Responsável | Pastas |
 |---|---|---|
 | **Front-end**: app mobile (campo) e painel web (gestor) | **Kadu** (`Kadu-cell`) | `apps/mobile/`, `apps/web/` |
-| **Back-end**: banco, migrations, RLS, Edge Functions, regras de sincronização | **Pedro** | `supabase/` |
+| **Back-end**: banco, migrations, RLS, Edge Functions, regras de sincronização | **Pedro** | `supabase/`, `powersync/` |
 | **Compartilhado**: tipos gerados do banco, regras de negócio comuns | os dois, com aviso no PR | `packages/shared/` |
 | **Documentação** | os dois | `CLAUDE.md`, `docs/` |
 
@@ -40,8 +40,8 @@ gadogest-sistema/
   - `docs/<assunto>` — ex.: `docs/decisao-permissoes`
 - Ao terminar: commit → push da branch → **Pull Request** para a `main` → o outro revisa → merge.
 - Branches **pequenas e curtas** (1 a 3 dias). Quanto mais tempo uma branch fica separada, maior a chance de conflito.
-- Exceção: mudanças **apenas de documentação** podem ir direto para a `main`, desde que o outro seja avisado.
-- Recomendado: proteger a `main` no GitHub (Settings → Branches → exigir Pull Request antes do merge).
+- **Documentação também passa por PR** (D-31, 16/11/2026): use uma branch `docs/...`; o outro pode aprovar na hora. A antiga exceção "docs direto na `main`" deixou de valer.
+- A `main` é protegida no GitHub (Settings → Branches → exigir Pull Request com 1 aprovação). *Aplicação pendente em 16/11/2026: ver D-31.*
 
 ---
 

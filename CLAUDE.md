@@ -206,8 +206,8 @@ Português BR, claro, objetivo, profissional; explique decisões de forma compre
 
 **Leia `docs/FLUXO-DE-TRABALHO.md` antes de criar branches, commits ou PRs.** Resumo obrigatório:
 
-- **Áreas:** Kadu = front (`apps/mobile/`, `apps/web/`); Pedro = back (`supabase/`); `packages/shared/` e `docs/` são compartilhados. **Não altere a área do outro desenvolvedor**: se a tarefa exigir, avise e sugira pedir ao responsável.
-- **Branches:** nunca commitar código direto na `main`. Uma branch por tarefa (`front/...`, `back/...`, `docs/...`), PR para a `main`, revisão do outro. Só documentação pode ir direto para a `main`.
+- **Áreas:** Kadu = front (`apps/mobile/`, `apps/web/`); Pedro = back (`supabase/`, `powersync/`); `packages/shared/` e `docs/` são compartilhados. **Não altere a área do outro desenvolvedor**: se a tarefa exigir, avise e sugira pedir ao responsável.
+- **Branches:** nunca commitar código direto na `main`. Uma branch por tarefa (`front/...`, `back/...`, `docs/...`), PR para a `main`, revisão do outro. Documentação também passa por PR (D-31).
 - **Contrato front/back:** o esquema do banco (migrations em `supabase/migrations/`) e os tipos TypeScript gerados em `packages/shared/`. Nunca editar os tipos gerados à mão.
 - **Ao começar uma sessão:** sugerir `git pull` na `main` e resumir o que mudou. **Toda decisão nova** vai para `docs/DECISOES.md` no mesmo PR.
 - **Identidade:** cada desenvolvedor commita com a **própria** conta GitHub (configurada com `git config` local). Antes de commitar, confira `git config user.name`; **nunca** commite em nome de outra pessoa. Se não estiver configurado, pergunte.
