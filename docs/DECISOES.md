@@ -107,6 +107,18 @@ Todas sujeitas ao conflito T-00 (plataforma).
 | D-11 | Repositório do **site** (`gadogest.com.br`, Vercel) é **`GadoGest/gadogest-site`**. | DECIDIDO | 16/11/2026 | Usuário (Kadu) | C-07 |
 | D-12 | **Fluxo de trabalho**: uma branch por tarefa (`front/`, `back/`, `docs/`), Pull Request revisado pelo outro antes de entrar na `main`; só documentação vai direto para a `main`; contrato front/back pelo esquema do banco + tipos TS gerados em `packages/shared/`; decisões sempre em `docs/DECISOES.md`. Detalhes em `docs/FLUXO-DE-TRABALHO.md`. | DECIDIDO | 16/11/2026 | Usuário (Kadu) | — |
 | D-13 | **Divisão da equipe**: Kadu no front-end (`apps/mobile/`, `apps/web/`); Pedro no back-end (`supabase/`). Estrutura de pastas monorepo planejada, criada a partir da Etapa 0. Cada um commita com a própria conta GitHub. Responde parcialmente Q-14 e K-03. | DECIDIDO | 16/11/2026 | Usuário (Kadu) | — |
+| D-14 | **Stack confirmada**: Expo + SQLite no celular, PowerSync, Supabase (Postgres, Auth, RLS, Edge Functions) e Next.js, **TypeScript em todas as camadas**; Python e PHP fora do MVP. Resolve Q-15. PowerSync e criptografia do SQLite continuam sendo validados na Etapa 0. | DECIDIDO | 16/11/2026 | Kadu e Pedro (informado por Kadu) | T-01 a T-07 (de PLANEJADO para DECIDIDO) |
+| D-15 | **Catálogo sanitário segue a D-08** (tabela com lista inicial da veterinária + itens do produtor) já no MVP. O plano técnico (29/10) propunha campo de texto com sugestões; **a D-08 prevalece**. | DECIDIDO | 16/11/2026 | Usuário (Kadu) | Proposta do plano §2 |
+| D-16 | **Aparelho revogado**: na conexão seguinte, o app **envia primeiro os registros pendentes** e só apaga os dados locais **depois que o servidor confirmar o recebimento**. Resolve K-04 e Q-26. | DECIDIDO | 16/11/2026 | Usuário (Kadu) | — |
+| D-17 | **Permissões do Funcionário** (Gestor pode tudo): **pode** cadastrar animais e lotes e registrar saúde (vacina, medicamento, tratamento, ocorrência) e pesagem. **Não pode** registrar compra, venda ou morte nem editar ou apagar registros. Regras aplicadas no backend (RLS), não só na interface. Responde **parcialmente** Q-20: troca de lote, nascimento, manejos agendados e acesso ao painel web ainda não foram definidos. | DECIDIDO (parcial) | 16/11/2026 | Usuário (Kadu) | — |
+| D-18 | **Porte de referência: até 5.000 cabeças** por propriedade. A meta de desempenho do app passa a ser uma lista de **5.000 animais** rolando sem travar no Android de teste (o plano usava 2.000). Resolve Q-02. | DECIDIDO | 16/11/2026 | Usuário (Kadu) | Meta da Etapa 2 do plano |
+| D-19 | **Ainda não há clientes**; os "30 clientes" do plano eram valor fictício. O desenvolvimento evolui conforme os clientes chegarem, com atualizações incrementais. Resolve Q-01. | DECIDIDO | 16/11/2026 | Usuário (Kadu) | — |
+| D-20 | **Sem data fixa**: o cronograma segue o ritmo do desenvolvimento, etapa por etapa (cada uma termina quando passa no "pronto quando"). O calendário do plano (início 03/11, piloto em jan/2027, ~9 semanas, 3 pessoas) deixa de valer. Resolve K-03. | DECIDIDO | 16/11/2026 | Usuário (Kadu) | T-19 |
+| D-21 | **Experiência da equipe**: Kadu e Pedro ainda **não têm experiência** com React Native, Postgres/SQL nem Supabase. A Etapa 0 inclui o aprendizado dessas ferramentas. Resolve Q-14. | REGISTRO | 16/11/2026 | Usuário (Kadu) | — |
+| D-22 | **Mesmo cadastro editado em dois aparelhos offline**: tratado **como o brinco duplicado (D-06)**. As duas versões são mantidas, o registro fica marcado como conflito e o **gestor decide** qual vale. Nada é sobrescrito automaticamente. Os eventos (vacina, pesagem etc.) continuam só se somando. **Atenção técnica:** o padrão do PowerSync é "a última alteração vale"; essa regra exige tratamento próprio no servidor e deve ser provada na Etapa 0. | DECIDIDO | 16/11/2026 | Usuário (Kadu) | Proposta do plano §1 ("vale a última alteração") |
+| D-23 | **Licença offline**: token assinado com validade de 15 dias; **licença vencida = modo só consulta**; **assinatura cancelada = só consulta e exportação**; proteção contra data alterada, como no plano. Resolve Q-18. | DECIDIDO | 16/11/2026 | Usuário (Kadu) | T-17 (parte da política) |
+| D-24 | **Foto do animal fica fora do MVP** (o plano a colocava na Etapa 2). Entra numa versão futura. | DECIDIDO | 16/11/2026 | Usuário (Kadu) | Item da Etapa 2 do plano |
+| D-25 | **Contas dos serviços** (Supabase, PowerSync, Expo e afins) ficam **em nome da GadoGest**, não de um integrante. | DECIDIDO | 16/11/2026 | Usuário (Kadu) | — |
 
 Verificação de 16/11/2026: não há código do sistema no Google Drive (`BackEnd/`, `FrontEnd/` e `GadoGest-Arquitetura/` vazias). Nada está implementado (responde Q-22 para esta data).
 
@@ -118,8 +130,8 @@ Verificação de 16/11/2026: não há código do sistema no Google Drive (`BackE
 |---|---|---|
 | **K-01** | **Plataforma/stack**: desktop Electron + Prisma + SQLite (Project) × mobile Expo + painel Next.js + Supabase + PowerSync (plano técnico). Também: Tailwind só no Project; sincronização, licença e aparelhos só no plano. | **RESOLVIDO em 16/11/2026 → D-01 (mobile + painel web)** |
 | **K-02** | **Maturidade dos módulos**: Project diz que o sistema "possui módulos integrados" (inclui pessoas, alimentação, estoque, financeiro, relatórios, reprodução); plano diz que reprodução está fora do MVP, alimentação/estoque são "planejados", financeiro detalhado e relatórios avançados são pós-MVP | Auditar o código; tratar como "planejado" até confirmar |
-| **K-03** | **Tamanho da equipe**: plano estima 9 semanas com "três pessoas"; equipe tem 4 integrantes, 1 desenvolvedor identificado | Confirmar quem desenvolve; rever cronograma |
-| **K-04** | **Apagar dados locais de aparelho revogado** × regra de não perder registros silenciosamente: e os dados ainda não sincronizados? | Decidir política (ex.: bloquear/sincronizar antes?) — ver Q-18 e Q-19 |
+| **K-03** | **Tamanho da equipe**: plano estima 9 semanas com "três pessoas"; equipe tem 4 integrantes, 1 desenvolvedor identificado | **RESOLVIDO em 16/11/2026 → D-13 e D-20** (2 devs, sem data fixa) |
+| **K-04** | **Apagar dados locais de aparelho revogado** × regra de não perder registros silenciosamente: e os dados ainda não sincronizados? | **RESOLVIDO em 16/11/2026 → D-16** (envia pendentes, depois apaga) |
 | **K-05** | **Exames** como parte da sanidade aparecem só na descrição do Project; o plano técnico não os lista | Confirmar se entram no escopo |
 | **K-06** | **Validação**: "6 de 8 entrevistados" (doc) × "12 fazendas" (usuário) | Confirmar se são levantamentos distintos antes de usar em materiais |
 | **K-07** | **Local do código**: `Kadu-cell/gadogest` foi descrito como o repositório do **site**; não se sabe se o sistema está nele, em outro, ou não existe | **RESOLVIDO em 16/11/2026 → D-10** |
@@ -134,9 +146,9 @@ As 20 questões do plano técnico, mais as derivadas.
 
 | ID | Pergunta | Status |
 |---|---|---|
-| Q-01 | Os primeiros 30 clientes representam contas ou fazendas? | Aberta |
-| Q-02 | Quantos animais tem a maior propriedade? | Aberta |
-| Q-03 | Qual o orçamento mensal de infraestrutura? | Aberta |
+| Q-01 | Os primeiros 30 clientes representam contas ou fazendas? | **Respondida 16/11/2026 → D-19** (valor fictício; ainda sem clientes) |
+| Q-02 | Quantos animais tem a maior propriedade? | **Respondida 16/11/2026 → D-18** (até 5.000) |
+| Q-03 | Qual o orçamento mensal de infraestrutura? | Em análise (16/11/2026): a equipe quer começar **sem custo**; os planos gratuitos de Supabase e PowerSync servem para o desenvolvimento, mas pausam após 1 semana sem uso. Decidir antes do piloto |
 | Q-04 | Login por e-mail ou telefone? | **Respondida 16/11/2026 → D-02** |
 | Q-05 | Assinatura por conta ou por fazenda? | Aberta |
 | Q-06 | Limite de aparelhos por conta ou por fazenda? | Aberta |
@@ -147,13 +159,13 @@ As 20 questões do plano técnico, mais as derivadas.
 | Q-11 | Produtos sanitários terão catálogo pré-cadastrado? | **Respondida 16/11/2026 → D-08** |
 | Q-12 | Algum produtor piloto usa iPhone? | Aberta |
 | Q-13 | Existem telas no Figma? | Aberta |
-| Q-14 | Qual a experiência técnica de cada integrante? | Aberta |
-| Q-15 | A equipe confirma TypeScript em todas as camadas? | Aberta |
+| Q-14 | Qual a experiência técnica de cada integrante? | **Respondida 16/11/2026 → D-21** |
+| Q-15 | A equipe confirma TypeScript em todas as camadas? | **Respondida 16/11/2026 → D-14** |
 | Q-16 | Qual solução para criptografia do SQLite? | Aberta |
-| Q-17 | O custo do PowerSync é adequado ao orçamento? | Aberta |
-| Q-18 | Qual a política de licença vencida? | Aberta |
+| Q-17 | O custo do PowerSync é adequado ao orçamento? | Aberta (ver Q-03); validar na Etapa 0 |
+| Q-18 | Qual a política de licença vencida? | **Respondida 16/11/2026 → D-23** |
 | Q-19 | Como resolver duplicidade de brincos? | **Respondida 16/11/2026 → D-06** |
-| Q-20 | Qual a matriz definitiva de permissões? | Aberta |
+| Q-20 | Qual a matriz definitiva de permissões? | **Parcial 16/11/2026 → D-17**; faltam troca de lote, nascimento, manejos agendados e painel web |
 
 **Pendências adicionais (derivadas das lacunas e conflitos):**
 
@@ -164,7 +176,7 @@ As 20 questões do plano técnico, mais as derivadas.
 | Q-23 | Financeiro básico no painel entra no MVP? | Doc §5.7, §11.1 — **respondida 16/11/2026 → D-05** |
 | Q-24 | Exames entram no módulo de sanidade? | K-05 — **respondida 16/11/2026 → D-09** |
 | Q-25 | Alimentação e estoque: escopo, prioridade e detalhamento? | Doc §7.8–7.9 |
-| Q-26 | Política para dados locais não sincronizados em aparelho revogado | K-04 |
+| Q-26 | Política para dados locais não sincronizados em aparelho revogado | K-04 — **respondida 16/11/2026 → D-16** |
 | Q-27 | Qual cobrança/plano substitui o valor de referência R$ 89,90? | Doc §15 |
 | Q-28 | Como o orçamento do edital (drone, balança, carreta, RFID/etiquetas etc.) se relaciona ao roadmap, já que balança/RFID estão fora do MVP? | Orçamento do edital |
 | Q-29 | Repositórios: site e sistema separados ou juntos? | K-07 — **respondida 16/11/2026 → D-10** |
