@@ -202,6 +202,8 @@ Português BR, claro, objetivo, profissional; explique decisões de forma compre
 
 ## 11. Git, commits e trabalho em equipe
 
+> **⚠️ REGRA DE FIM DE SESSÃO (obrigatória):** sempre que o usuário indicar que vai encerrar, pausar ou terminou o trabalho (ex.: "por hoje é isso", "pode parar", "terminamos", "ainda não, depois continuo"), ou quando uma tarefa for concluída, **apresente o checklist de fim de sessão** de `docs/FLUXO-DE-TRABALHO.md` §8 — decisões em `DECISOES.md`, docs atualizados, commit, push, PR, impacto no outro desenvolvedor, próximo passo anotado. Marque o que já está feito, aponte o que falta e ofereça executar os itens pendentes. Não encerre sem isso: é o que mantém Kadu e Pedro (e seus Claudes) sincronizados.
+
 **Leia `docs/FLUXO-DE-TRABALHO.md` antes de criar branches, commits ou PRs.** Resumo obrigatório:
 
 - **Áreas:** Kadu = front (`apps/mobile/`, `apps/web/`); Pedro = back (`supabase/`); `packages/shared/` e `docs/` são compartilhados. **Não altere a área do outro desenvolvedor**: se a tarefa exigir, avise e sugira pedir ao responsável.

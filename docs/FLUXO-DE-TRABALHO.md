@@ -106,3 +106,19 @@ O e-mail noreply de cada um está em github.com/settings/emails.
 ## 7. Se acontecer um conflito
 
 Nenhum trabalho se perde: o Git marca o trecho com as duas versões e pede para alguém escolher. Peça ao Claude: *"resolva o conflito, me mostre o que ficou e explique o que cada versão fazia"*. Em caso de dúvida sobre qual versão vale, converse com o outro antes de concluir.
+
+---
+
+## 8. Checklist de fim de sessão
+
+Ao encerrar qualquer sessão de trabalho com o Claude (Kadu ou Pedro), o Claude deve apresentar este checklist, **marcando o que já foi feito e apontando o que falta**, e oferecer-se para executar os itens pendentes:
+
+1. **Decisões registradas** — toda decisão tomada na conversa está em `docs/DECISOES.md`? (O que ficou só no chat, o Claude do outro não sabe.)
+2. **Docs atualizados** — se algo foi implementado ou mudou de status, `docs/ROADMAP.md` (e `REQUISITOS.md`, se for o caso) foram atualizados?
+3. **Commit** — todas as alterações estão commitadas, com mensagem clara e com o usuário de quem trabalhou?
+4. **Push** — os commits foram enviados ao GitHub? Sem push, o outro não recebe nada.
+5. **Pull Request** — se foi código numa branch, o PR foi aberto e o outro avisado para revisar?
+6. **Impacto no outro** — houve mudança que afeta a área do outro (campo de tabela, tipo em `packages/shared/`, regra de negócio)? Se sim, está descrita no PR e o outro foi avisado.
+7. **Próximo passo** — deixar anotado (no PR, numa issue ou em `docs/ROADMAP.md`) o que ficou pela metade e qual é o próximo passo.
+
+Para o outro desenvolvedor, a contrapartida no começo da sessão seguinte é: `git pull` na `main` e pedir ao Claude um resumo do que mudou.
