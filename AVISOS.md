@@ -18,29 +18,6 @@ Origem: PR #5, D-36. Sem ele na `main`, o app não tem a função de envio nem o
 3. Avise o Pedro para fazer o merge, ou faça você em **Merge pull request**.
 4. Depois do merge: `git checkout main` e `git pull`.
 
-### A-02 · Para: Pedro · Criar a conta e a instância do PowerSync
-Origem: D-25 (contas em nome da GadoGest), D-33, D-36.
-1. Acesse https://dashboard.powersync.com e crie a conta **com o e-mail da GadoGest** (não um pessoal).
-2. Crie uma organização/projeto **GadoGest** e, dentro dele, uma instância chamada **`gadogest-dev`**. Se houver opção de região, escolha a mais próxima do Brasil (a região não muda depois).
-3. Ainda **não** preencha a conexão com o banco: ela depende do aviso A-03.
-4. Crie um **token pessoal** (Access Tokens no painel) e guarde no gerenciador de senhas. Ele é pedido no `npx powersync@0.9.0 login`.
-
-### A-03 · Para: Pedro · Definir a senha do `powersync_role` no Supabase
-Origem: migration `20261117165858_prova_offline.sql` (o usuário foi criado **sem senha**; senha nunca vai para o Git).
-1. Gere uma senha forte no gerenciador de senhas (sem aspas simples).
-2. Painel do Supabase → projeto **gadogest-dev** → **SQL Editor** → nova consulta.
-3. Rode: `alter role powersync_role with password 'SUA_SENHA';` (troque `SUA_SENHA`).
-4. Guarde a senha no gerenciador de senhas como "gadogest-dev / powersync_role".
-5. **Não** cole a senha no chat do Claude nem em arquivos do repositório.
-
-### A-04 · Para: Pedro · Ligar o PowerSync ao gadogest-dev e publicar as regras
-Origem: D-36, `powersync/README.md`. Depende de A-02 e A-03.
-1. No terminal, na pasta do projeto: `npx powersync@0.9.0 login` (cole o token do A-02).
-2. Peça ao Claude: *"ligue a pasta powersync/ à instância gadogest-dev e publique as regras"*. Ele roda `init`/`link`, preenche o `service.yaml` (conexão com `powersync_role`, login do Supabase) e faz `validate` e `deploy --dry-run`.
-3. Quando pedir a senha do banco, defina a variável de ambiente **você mesmo** no terminal (o Claude não digita senhas).
-4. Confira no painel do PowerSync que a instância aparece como conectada.
-5. Anote a **URL da instância** (algo como `https://....powersync.journeyapps.com`) e passe para o Kadu (aviso A-06).
-
 ### A-05 · Para: Pedro · Criar o usuário de teste e a fazenda de teste
 Origem: o app usa a fazenda fixa `00000000-0000-4000-8000-000000000001`, que ainda não existe no `gadogest-dev`.
 1. Painel do Supabase → **gadogest-dev** → **Authentication** → **Users** → **Add user** → **Create new user**.
@@ -54,7 +31,7 @@ Origem: D-36 e descrição do PR #5. Depende de A-01; para testar de verdade, de
 2. No `uploadData`, para cada item da fila: `supabase.rpc('sincronizar_teste_animal', { p_operacao: op.op, p_id: op.id, p_dados: op.opData ?? {} })`.
 3. Qualquer `data.resultado` (`aplicado`, `ja_aplicado`, `conflito`, `rejeitado`) = processado → `transaction.complete()`. Se vier `error` (rede/login), **não** complete: deixe na fila.
 4. **Toda edição sobe `versao` em 1** no mesmo `UPDATE` local (`versao = versao + 1`). Sem isso o servidor recusa (`versao_ausente`) ou marca conflito.
-5. Variáveis no `apps/mobile/.env`: as do Supabase (já no `.env.example`) e a **URL da instância do PowerSync** (o Pedro passa no A-04). Atualize o `.env.example` com o nome da nova variável.
+5. Variáveis no `apps/mobile/.env`: as do Supabase (já no `.env.example`) e a **URL da instância do PowerSync**: `https://6afcc9d43224a694a45abf6e.powersync.journeyapps.com` (não é segredo). Atualize o `.env.example` com o nome da nova variável.
 6. Teste em modo avião: cadastre offline, volte a conexão e confira no Supabase (Table Editor → `teste_animais`).
 
 ### A-07 · Para: Kadu · Revisar as permissões provisórias (D-26) e fechar a Q-20
@@ -73,12 +50,16 @@ Origem: D-31 (aplicação pendente).
 Origem: D-25.
 1. **Supabase:** o projeto `gadogest-dev` está numa organização da GadoGest? (Painel → nome da organização no topo.) Se estiver numa conta pessoal, transfira em Organization Settings.
 2. **GitHub:** o repositório já está na organização GadoGest. ✓
-3. **PowerSync e Expo:** criar já com o e-mail da GadoGest (ver A-02).
+3. **PowerSync:** conta criada com o e-mail da GadoGest (organização "GadoGest's Projects"). ✓ **Expo:** criar já com o e-mail da GadoGest.
 4. Quem conferir, mova este aviso para "resolvidos" com o resultado.
 
 ## Avisos resolvidos
 
 *(Mova para cá os avisos concluídos, com a data e quem fez.)*
+
+- **A-02 · Conta e instância do PowerSync** — 17/11/2026, Pedro. Conta com o e-mail da GadoGest; projeto **GadoGest** com as instâncias `Development` (usada, região `br`/São Paulo) e `Production` (sem uso). Cadastro em https://accounts.powersync.com/portal/powersync-signup (o `dashboard.powersync.com` só tem login).
+- **A-03 · Senha do `powersync_role`** — 17/11/2026, Pedro (com o Claude). Senha aleatória gerada sem ser exibida, aplicada no banco só como hash SCRAM e guardada em `powersync/.env` na máquina do Pedro (ignorado pelo Git). Outra máquina que for fazer deploy precisa desse valor por canal privado, ou de uma senha nova.
+- **A-04 · PowerSync ligado ao gadogest-dev** — 17/11/2026, Pedro (com o Claude). `deploy` feito; conexão `connected`, replicação inicial concluída de `teste_animais` e `vinculos`. URL: `https://6afcc9d43224a694a45abf6e.powersync.journeyapps.com`.
 
 ---
 
