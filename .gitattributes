@@ -1,0 +1,2 @@
+# Hooks do Git rodam em sh: precisam de fim de linha LF, mesmo no Windows.
+.githooks/* text eol=lf

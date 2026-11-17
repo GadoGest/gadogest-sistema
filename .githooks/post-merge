@@ -1,0 +1,5 @@
+#!/bin/sh
+# Depois de `git pull` (merge ou fast-forward): mostra os avisos de AVISOS.md.
+# Nunca bloqueia o Git, mesmo se o Node não estiver instalado.
+command -v node >/dev/null 2>&1 && node scripts/avisos.mjs
+exit 0

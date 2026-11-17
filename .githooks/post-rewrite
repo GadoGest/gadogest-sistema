@@ -1,0 +1,7 @@
+#!/bin/sh
+# Depois de `git pull --rebase`: mostra os avisos de AVISOS.md.
+# (Também roda em `git commit --amend`; aí não mostra nada.)
+if [ "$1" = "rebase" ]; then
+  command -v node >/dev/null 2>&1 && node scripts/avisos.mjs
+fi
+exit 0
