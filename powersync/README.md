@@ -3,10 +3,21 @@
 | Arquivo | Conteúdo |
 |---|---|
 | `sync-config.yaml` | Sync Streams: quais dados cada usuário recebe no aparelho. |
-| `service.yaml` | Configuração da instância (conexão com o Supabase, login). Gerado por `powersync init cloud`. |
+| `service.yaml` | Configuração da instância (conexão com o Supabase, login pelo Supabase Auth, região `br`). |
 | `cli.yaml` | Liga a pasta à instância. Gerado por `powersync link`. |
 
 Senhas e tokens **nunca** ficam nesses arquivos: entram por variável de ambiente (`!env`).
+
+## Instância
+
+PowerSync Cloud, organização "GadoGest's Projects", projeto **GadoGest**. O projeto veio com duas instâncias, `Development` e `Production`; esta pasta está ligada à **`Development`** (região `br`, São Paulo), que conversa com o Supabase `gadogest-dev`. A `Production` fica sem uso até existir um ambiente de produção.
+
+A senha do `powersync_role` vai na variável `POWERSYNC_DATABASE_PASSWORD`, só na sessão do terminal:
+
+```powershell
+$env:POWERSYNC_DATABASE_PASSWORD = Read-Host 'Senha do powersync_role'
+npx powersync@0.9.0 deploy
+```
 
 ## Como funciona
 
