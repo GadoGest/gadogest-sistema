@@ -50,12 +50,12 @@ Nenhuma linha de módulo abaixo deve ser marcada "feito" sem essa verificação.
 
 ## 4. A desenvolver — plano técnico v1.0 [PLANEJADO]
 
-Cronograma original: ~**9 semanas**, equipe de 3 pessoas (**[CONFLITO]** com a equipe real; estimativa a ser revista). Prioridade: entregar um produto **confiável**; se atrasar, o **financeiro do painel é o primeiro a sair**.
+Cronograma original: ~**9 semanas**, equipe de 3 pessoas. **Substituído em 16/11/2026 (D-20): sem data fixa**, etapa por etapa, com 2 desenvolvedores. Meta de desempenho da Etapa 2 passa a ser 5.000 animais (D-18); foto do animal sai do MVP (D-24). Prioridade: entregar um produto **confiável**; se atrasar, o **financeiro do painel é o primeiro a sair**.
 
 | Etapa | Entrega | Status |
 |---|---|---|
 | 0 | Fundação e prova técnica do offline | Planejada |
-| 1 | Login, contas, fazendas e permissões | **Em andamento (back)**: migration da fundação + RLS provisório (D-14) + testes pgTAP na branch `back/fundacao-supabase`; projeto `gadogest-dev` (D-15) |
+| 1 | Login, contas, fazendas e permissões | **Em andamento (back)**: migration da fundação + RLS provisório (D-26) + testes pgTAP na branch `back/fundacao-supabase`; projeto `gadogest-dev` (D-27) |
 | 2 | Rebanho, lotes e movimentações | Planejada |
 | 3 | Saúde, sanidade e manejos | Planejada |
 | 4 | Pesagens e GMD | Planejada |

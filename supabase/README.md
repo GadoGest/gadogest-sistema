@@ -1,6 +1,6 @@
 # supabase/ — back-end do GadoGest
 
-Área do back-end (Pedro). Projeto de desenvolvimento: **`gadogest-dev`** (região São Paulo, `sa-east-1`). Ver D-14 e D-15 em `docs/DECISOES.md`.
+Área do back-end (Pedro). Projeto de desenvolvimento: **`gadogest-dev`** (região São Paulo, `sa-east-1`). Ver D-26 e D-27 em `docs/DECISOES.md`.
 
 | Pasta | Conteúdo |
 |---|---|

@@ -223,11 +223,12 @@ Lista completa e numerada em `docs/DECISOES.md` (seções "Conflitos" e "Pendên
 
 **Resolvidos em 16/11/2026** (ver D-01 a D-13): plataforma (mobile + web), local do código, login, funcionário em uma fazenda, aplicação em lote, financeiro e exames fora do MVP, brinco duplicado/opcional, catálogo sanitário, repositório do site, fluxo de trabalho e divisão front/back. Em 16/11/2026 **não havia código do sistema**.
 
+**Resolvidos também em 16/11/2026, após leitura do plano técnico do MVP** (ver D-14 a D-25): stack confirmada em TypeScript; catálogo sanitário pela D-08; aparelho revogado envia pendentes antes de apagar; permissões parciais do funcionário; porte de até 5.000 cabeças; sem clientes ainda; sem data fixa no cronograma; equipe sem experiência prévia em RN/Postgres/Supabase; edição em dois aparelhos tratada como conflito para o gestor (não vale "última alteração"); licença vencida = só consulta; foto do animal fora do MVP; contas dos serviços em nome da GadoGest.
+
 Ainda abertos:
 - **[CONFLITO]** Módulos descritos como "integrados" no Project × plano técnico que os trata como planejados/pós-MVP (reprodução, alimentação, estoque, relatórios).
-- **[CONFLITO]** Cronograma do plano para "três pessoas" × equipe real (2 desenvolvedores: Kadu no front, Pedro no back).
-- **[PENDENTE]** Matriz de permissões (Q-20); criptografia do SQLite (Q-16) e custo do PowerSync (Q-17), a validar na Etapa 0; política de licença vencida (Q-18); assinatura/limite de aparelhos/cobrança (Q-05, Q-06, Q-09); iPhone no piloto (Q-12); Figma (Q-13); TypeScript em todas as camadas (Q-15); clientes iniciais, tamanho da maior propriedade e orçamento (Q-01 a Q-03).
-- **Tensão a decidir:** apagar dados locais de aparelho revogado × regra de nunca perder registro silenciosamente (e se houver dados ainda não sincronizados?).
+- **[PENDENTE]** Restante da matriz de permissões (Q-20: troca de lote, nascimento, manejos, painel); criptografia do SQLite (Q-16) e custo do PowerSync (Q-17), a validar na Etapa 0; orçamento de infraestrutura (Q-03: começar nos planos gratuitos, decidir antes do piloto); assinatura/limite de aparelhos/cobrança (Q-05, Q-06, Q-09); iPhone no piloto (Q-12); Figma (Q-13).
+- **Risco técnico (D-22):** o PowerSync usa "última alteração vale" por padrão; o tratamento de conflito de edição como pendência para o gestor precisa ser provado na Etapa 0.
 
 ---
 
