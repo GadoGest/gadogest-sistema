@@ -54,7 +54,7 @@ Cronograma original: ~**9 semanas**, equipe de 3 pessoas. **Substituído em 16/1
 
 | Etapa | Entrega | Status |
 |---|---|---|
-| 0 | Fundação e prova técnica do offline | Planejada |
+| 0 | Fundação e prova técnica do offline | **Em andamento (front)**: monorepo e app Expo criados; development build rodando num Android real; PowerSync + SQLite gravando localmente com UUID gerado no aparelho e fila de pendentes (16/11/2026, branch `front/prova-offline-app`). **Falta**: sincronizar com o Supabase (depende do back, D-33), modo avião de ponta a ponta, idempotência, RLS, conflito de edição (D-22), criptografia, 5.000 animais e custo |
 | 1 | Login, contas, fazendas e permissões | **Em andamento (back)**: migration da fundação + RLS provisório (D-26) + testes pgTAP na branch `back/fundacao-supabase`; projeto `gadogest-dev` (D-27) |
 | 2 | Rebanho, lotes e movimentações | Planejada |
 | 3 | Saúde, sanidade e manejos | Planejada |
