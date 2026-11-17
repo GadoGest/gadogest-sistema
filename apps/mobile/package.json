@@ -5,13 +5,14 @@
   "main": "index.ts",
   "scripts": {
     "start": "expo start",
-    "android": "expo start --android",
+    "android": "expo run:android",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@gadogest/shared": "*",
     "expo": "~58.0.25",
+    "expo-dev-client": "~58.0.20",
     "expo-status-bar": "~58.0.5",
     "react": "19.3.0",
     "react-native": "0.88.1"
