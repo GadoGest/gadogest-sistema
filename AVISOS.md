@@ -11,13 +11,6 @@
 
 ## Avisos abertos
 
-### A-01 · Para: Kadu · Revisar e aprovar o PR #5 (prova offline do back)
-Origem: PR #5, D-36. Sem ele na `main`, o app não tem a função de envio nem os tipos novos.
-1. Abra https://github.com/GadoGest/gadogest-sistema/pull/5 e leia a descrição (seção "Para o Kadu").
-2. Vá na aba **Files changed** → botão verde **Review changes** → marque **Approve** → **Submit review**. (Comentário escrito "aprovado" não conta como aprovação para o GitHub.)
-3. Avise o Pedro para fazer o merge, ou faça você em **Merge pull request**.
-4. Depois do merge: `git checkout main` e `git pull`.
-
 ### A-10 · Para: Pedro · Passar o login de teste para o Kadu
 Origem: A-05 (resolvido).
 1. Mande ao Kadu, **por canal privado** (não no GitHub), o e-mail `teste@gadogest.com.br` e a senha que você definiu no Supabase.
@@ -55,6 +48,7 @@ Origem: D-25.
 
 *(Mova para cá os avisos concluídos, com a data e quem fez.)*
 
+- **A-01 · Revisar e aprovar o PR #5** — 17/11/2026, Kadu. PRs #5 e #6 aprovados e unidos à `main`.
 - **A-02 · Conta e instância do PowerSync** — 17/11/2026, Pedro. Conta com o e-mail da GadoGest; projeto **GadoGest** com as instâncias `Development` (usada, região `br`/São Paulo) e `Production` (sem uso). Cadastro em https://accounts.powersync.com/portal/powersync-signup (o `dashboard.powersync.com` só tem login).
 - **A-03 · Senha do `powersync_role`** — 17/11/2026, Pedro (com o Claude). Senha aleatória gerada sem ser exibida, aplicada no banco só como hash SCRAM e guardada em `powersync/.env` na máquina do Pedro (ignorado pelo Git). Outra máquina que for fazer deploy precisa desse valor por canal privado, ou de uma senha nova.
 - **A-04 · PowerSync ligado ao gadogest-dev** — 17/11/2026, Pedro (com o Claude). `deploy` feito; conexão `connected`, replicação inicial concluída de `teste_animais` e `vinculos`. URL: `https://6afcc9d43224a694a45abf6e.powersync.journeyapps.com`.
