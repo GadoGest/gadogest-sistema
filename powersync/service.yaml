@@ -1,0 +1,28 @@
+# yaml-language-server: $schema=https://unpkg.com/@powersync/cli-schemas@latest/json-schema/service-config.json
+
+# Instância PowerSync Cloud do ambiente de desenvolvimento (projeto GadoGest,
+# instância "Development"), ligada ao Supabase gadogest-dev.
+# Nenhum segredo fica neste arquivo: a senha vem da variável de ambiente
+# POWERSYNC_DATABASE_PASSWORD (senha do powersync_role, aviso A-03).
+
+_type: cloud
+name: Development
+
+# São Paulo. Não pode ser alterada depois da criação.
+region: br
+
+replication:
+  connections:
+    - type: postgresql
+      # Conexão direta do Supabase gadogest-dev (a replicação lógica não passa pelo pooler).
+      hostname: db.pwprbguclcjwusfbpsdm.supabase.co
+      port: 5432
+      database: postgres
+      username: powersync_role
+      password:
+        secret: !env POWERSYNC_DATABASE_PASSWORD
+      sslmode: verify-full
+
+# O app entra com o Supabase Auth; o PowerSync aceita o mesmo token.
+client_auth:
+  supabase: true
