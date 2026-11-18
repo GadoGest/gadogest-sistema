@@ -18,12 +18,10 @@ Origem: PR #5, D-36. Sem ele na `main`, o app não tem a função de envio nem o
 3. Avise o Pedro para fazer o merge, ou faça você em **Merge pull request**.
 4. Depois do merge: `git checkout main` e `git pull`.
 
-### A-05 · Para: Pedro · Criar o usuário de teste e a fazenda de teste
-Origem: o app usa a fazenda fixa `00000000-0000-4000-8000-000000000001`, que ainda não existe no `gadogest-dev`.
-1. Painel do Supabase → **gadogest-dev** → **Authentication** → **Users** → **Add user** → **Create new user**.
-2. Use um e-mail de teste da GadoGest e uma senha do gerenciador de senhas; marque **Auto Confirm User**.
-3. Passe **só o e-mail** para o Claude e peça: *"crie a conta e a fazenda de teste com o id do app e vincule este usuário como gestor"*.
-4. Passe o e-mail e a senha de teste para o Kadu **por um canal privado** (não no GitHub).
+### A-10 · Para: Pedro · Passar o login de teste para o Kadu
+Origem: A-05 (resolvido).
+1. Mande ao Kadu, **por canal privado** (não no GitHub), o e-mail `teste@gadogest.com` e a senha que você definiu no Supabase.
+2. Quando ele confirmar que recebeu, mova este aviso para "resolvidos".
 
 ### A-06 · Para: Kadu · Login e envio no app (uploadData)
 Origem: D-36 e descrição do PR #5. Depende de A-01; para testar de verdade, de A-04 e A-05.
@@ -60,6 +58,7 @@ Origem: D-25.
 - **A-02 · Conta e instância do PowerSync** — 17/11/2026, Pedro. Conta com o e-mail da GadoGest; projeto **GadoGest** com as instâncias `Development` (usada, região `br`/São Paulo) e `Production` (sem uso). Cadastro em https://accounts.powersync.com/portal/powersync-signup (o `dashboard.powersync.com` só tem login).
 - **A-03 · Senha do `powersync_role`** — 17/11/2026, Pedro (com o Claude). Senha aleatória gerada sem ser exibida, aplicada no banco só como hash SCRAM e guardada em `powersync/.env` na máquina do Pedro (ignorado pelo Git). Outra máquina que for fazer deploy precisa desse valor por canal privado, ou de uma senha nova.
 - **A-04 · PowerSync ligado ao gadogest-dev** — 17/11/2026, Pedro (com o Claude). `deploy` feito; conexão `connected`, replicação inicial concluída de `teste_animais` e `vinculos`. URL: `https://6afcc9d43224a694a45abf6e.powersync.journeyapps.com`.
+- **A-05 · Usuário e fazenda de teste** — 18/11/2026, Pedro (com o Claude). Usuário `teste@gadogest.com` (Auth, confirmado) é **gestor** da "Fazenda de teste" (`00000000-0000-4000-8000-000000000001`), na "Conta de teste", da qual é dono. Vínculo já replicado pelo PowerSync.
 
 ---
 
