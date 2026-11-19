@@ -25,24 +25,19 @@ Origem: D-36 e descrição do PR #5. Depende de A-01; para testar de verdade, de
 5. Variáveis no `apps/mobile/.env`: as do Supabase (já no `.env.example`) e a **URL da instância do PowerSync**: `https://6afcc9d43224a694a45abf6e.powersync.journeyapps.com` (não é segredo). Atualize o `.env.example` com o nome da nova variável.
 6. Teste em modo avião: cadastre offline, volte a conexão e confira no Supabase (Table Editor → `teste_animais`).
 
-### A-07 · Para: Kadu · Revisar as permissões provisórias (D-26) e fechar a Q-20
-Origem: D-17, D-26.
-1. Leia a D-26 em `docs/DECISOES.md`: dono da conta cria fazendas; gestor gerencia tudo; funcionário lê e registra o próprio aparelho.
-2. Decida o que falta da Q-20: **troca de lote, nascimento, manejos agendados e acesso ao painel web** do funcionário.
-3. Registre como decisão nova em `docs/DECISOES.md` (PR `docs/...`) e avise o Pedro para ajustar o RLS.
+### A-11 · Para: Pedro · Aplicar as permissões da D-37 no RLS das próximas etapas
+Origem: A-07 (resolvido), D-17, D-26 e D-37.
+1. Leia a **D-37** em `docs/DECISOES.md`. A D-26 foi aprovada pelo Kadu **sem mudanças**, então o RLS da fundação continua como está.
+2. Quando criar as tabelas das Etapas 2 e 3, o funcionário **pode** registrar troca de lote e nascimento, e **pode marcar um manejo agendado como realizado**. **Criar, alterar ou cancelar agendamento é só do gestor.**
+3. O funcionário **não acessa o painel web**. Isso precisa valer no backend também, não só escondendo telas.
+4. Cubra essas regras com testes pgTAP e mova este aviso para "resolvidos" quando as tabelas existirem.
 
-### A-08 · Para: Kadu · Ativar a proteção da `main` no GitHub
-Origem: D-31 (aplicação pendente).
-1. GitHub → repositório `gadogest-sistema` → **Settings** → **Branches** (ou **Rules → Rulesets**).
-2. Regra para `main`: **Require a pull request before merging** com **1 approval**.
-3. Se o plano gratuito da organização não permitir em repositório privado, registre isso na D-31.
-
-### A-09 · Para: Todos · Conferir se os serviços estão em nome da GadoGest
-Origem: D-25.
-1. **Supabase:** o projeto `gadogest-dev` está numa organização da GadoGest? (Painel → nome da organização no topo.) Se estiver numa conta pessoal, transfira em Organization Settings.
-2. **GitHub:** o repositório já está na organização GadoGest. ✓
-3. **PowerSync:** conta criada com o e-mail da GadoGest (organização "GadoGest's Projects"). ✓ **Expo:** criar já com o e-mail da GadoGest.
-4. Quem conferir, mova este aviso para "resolvidos" com o resultado.
+### A-12 · Para: Todos · Decidir se o repositório `gadogest-sistema` fica público
+Origem: A-08 (resolvido), D-31.
+1. Hoje o repositório é **público**: qualquer pessoa vê o código, as decisões e este arquivo. Nenhuma senha está nele, mas aparecem o e-mail do usuário de teste e a URL da instância do PowerSync.
+2. Converse com o Pedro e decidam: **continuar público** ou **passar para privado** (GitHub → Settings → General → Danger Zone → Change visibility).
+3. Atenção: no plano gratuito, a proteção da `main` (D-31) provavelmente **deixa de funcionar** em repositório privado.
+4. Registre a escolha como decisão nova em `docs/DECISOES.md` e mova este aviso para "resolvidos".
 
 ## Avisos resolvidos
 
@@ -53,6 +48,9 @@ Origem: D-25.
 - **A-03 · Senha do `powersync_role`** — 17/11/2026, Pedro (com o Claude). Senha aleatória gerada sem ser exibida, aplicada no banco só como hash SCRAM e guardada em `powersync/.env` na máquina do Pedro (ignorado pelo Git). Outra máquina que for fazer deploy precisa desse valor por canal privado, ou de uma senha nova.
 - **A-04 · PowerSync ligado ao gadogest-dev** — 17/11/2026, Pedro (com o Claude). `deploy` feito; conexão `connected`, replicação inicial concluída de `teste_animais` e `vinculos`. URL: `https://6afcc9d43224a694a45abf6e.powersync.journeyapps.com`.
 - **A-05 · Usuário e fazenda de teste** — 18/11/2026, Pedro (com o Claude). Usuário `teste@gadogest.com.br` (Auth, confirmado) é **gestor** da "Fazenda de teste" (`00000000-0000-4000-8000-000000000001`), na "Conta de teste", da qual é dono. Vínculo já replicado pelo PowerSync.
+- **A-07 · Revisar as permissões provisórias (D-26) e fechar a Q-20** — 19/11/2026, Kadu (com o Claude). D-26 aprovada sem mudanças; o restante da Q-20 virou a **D-37**. Ajuste do RLS nas próximas etapas: aviso A-11.
+- **A-08 · Proteção da `main` no GitHub** — 19/11/2026, Kadu (com o Claude, pelo `gh`). PR obrigatório com 1 aprovação, sem force push e sem apagar a branch. Funcionou no plano gratuito porque o repositório é público (ver A-12).
+- **A-09 · Serviços em nome da GadoGest** — 19/11/2026, Kadu (com o Claude). Supabase: organização "GadoGest" (plano Free), com o e-mail da GadoGest como único membro (Owner) e o projeto `gadogest-dev`. GitHub e PowerSync já estavam ok. **Expo**: quando for criado, usar o e-mail da GadoGest.
 
 ---
 
