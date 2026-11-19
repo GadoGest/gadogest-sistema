@@ -16,15 +16,6 @@ Origem: A-05 (resolvido).
 1. Mande ao Kadu, **por canal privado** (não no GitHub), o e-mail `teste@gadogest.com.br` e a senha que você definiu no Supabase.
 2. Quando ele confirmar que recebeu, mova este aviso para "resolvidos".
 
-### A-06 · Para: Kadu · Login e envio no app (uploadData)
-Origem: D-36 e descrição do PR #5. Depende de A-01; para testar de verdade, de A-04 e A-05.
-1. Login com e-mail e senha pelo Supabase Auth (D-02); o token vai para o conector do PowerSync (`fetchCredentials`).
-2. No `uploadData`, para cada item da fila: `supabase.rpc('sincronizar_teste_animal', { p_operacao: op.op, p_id: op.id, p_dados: op.opData ?? {} })`.
-3. Qualquer `data.resultado` (`aplicado`, `ja_aplicado`, `conflito`, `rejeitado`) = processado → `transaction.complete()`. Se vier `error` (rede/login), **não** complete: deixe na fila.
-4. **Toda edição sobe `versao` em 1** no mesmo `UPDATE` local (`versao = versao + 1`). Sem isso o servidor recusa (`versao_ausente`) ou marca conflito.
-5. Variáveis no `apps/mobile/.env`: as do Supabase (já no `.env.example`) e a **URL da instância do PowerSync**: `https://6afcc9d43224a694a45abf6e.powersync.journeyapps.com` (não é segredo). Atualize o `.env.example` com o nome da nova variável.
-6. Teste em modo avião: cadastre offline, volte a conexão e confira no Supabase (Table Editor → `teste_animais`).
-
 ### A-07 · Para: Kadu · Revisar as permissões provisórias (D-26) e fechar a Q-20
 Origem: D-17, D-26.
 1. Leia a D-26 em `docs/DECISOES.md`: dono da conta cria fazendas; gestor gerencia tudo; funcionário lê e registra o próprio aparelho.
@@ -53,6 +44,7 @@ Origem: D-25.
 - **A-03 · Senha do `powersync_role`** — 17/11/2026, Pedro (com o Claude). Senha aleatória gerada sem ser exibida, aplicada no banco só como hash SCRAM e guardada em `powersync/.env` na máquina do Pedro (ignorado pelo Git). Outra máquina que for fazer deploy precisa desse valor por canal privado, ou de uma senha nova.
 - **A-04 · PowerSync ligado ao gadogest-dev** — 17/11/2026, Pedro (com o Claude). `deploy` feito; conexão `connected`, replicação inicial concluída de `teste_animais` e `vinculos`. URL: `https://6afcc9d43224a694a45abf6e.powersync.journeyapps.com`.
 - **A-05 · Usuário e fazenda de teste** — 18/11/2026, Pedro (com o Claude). Usuário `teste@gadogest.com.br` (Auth, confirmado) é **gestor** da "Fazenda de teste" (`00000000-0000-4000-8000-000000000001`), na "Conta de teste", da qual é dono. Vínculo já replicado pelo PowerSync.
+- **A-06 · Login e envio no app (uploadData)** — 19/11/2026, Kadu (com o Claude), branch `front/login-upload`. Login com sessão guardada no aparelho (D-38), envio pela `sincronizar_teste_animal` e edição com `versao + 1`. Nova variável `EXPO_PUBLIC_POWERSYNC_URL` no `.env.example`: **quem já tem `apps/mobile/.env` precisa acrescentá-la**. Teste em modo avião aprovado no Moto G60: 3 registros no servidor sem duplicar, edição aplicada, nenhuma pendência.
 
 ---
 
