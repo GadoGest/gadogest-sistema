@@ -11,11 +11,6 @@
 
 ## Avisos abertos
 
-### A-10 · Para: Pedro · Passar o login de teste para o Kadu
-Origem: A-05 (resolvido).
-1. Mande ao Kadu, **por canal privado** (não no GitHub), o e-mail `teste@gadogest.com.br` e a senha que você definiu no Supabase.
-2. Quando ele confirmar que recebeu, mova este aviso para "resolvidos".
-
 ### A-06 · Para: Kadu · Login e envio no app (uploadData)
 Origem: D-36 e descrição do PR #5. Depende de A-01; para testar de verdade, de A-04 e A-05.
 1. Login com e-mail e senha pelo Supabase Auth (D-02); o token vai para o conector do PowerSync (`fetchCredentials`).
@@ -32,12 +27,11 @@ Origem: A-07 (resolvido), D-17, D-26 e D-37.
 3. O funcionário **não acessa o painel web**. Isso precisa valer no backend também, não só escondendo telas.
 4. Cubra essas regras com testes pgTAP e mova este aviso para "resolvidos" quando as tabelas existirem.
 
-### A-12 · Para: Todos · Decidir se o repositório `gadogest-sistema` fica público
-Origem: A-08 (resolvido), D-31.
-1. Hoje o repositório é **público**: qualquer pessoa vê o código, as decisões e este arquivo. Nenhuma senha está nele, mas aparecem o e-mail do usuário de teste e a URL da instância do PowerSync.
-2. Converse com o Pedro e decidam: **continuar público** ou **passar para privado** (GitHub → Settings → General → Danger Zone → Change visibility).
-3. Atenção: no plano gratuito, a proteção da `main` (D-31) provavelmente **deixa de funcionar** em repositório privado.
-4. Registre a escolha como decisão nova em `docs/DECISOES.md` e mova este aviso para "resolvidos".
+### A-12 · Para: Todos · Passar o repositório `gadogest-sistema` para privado
+Origem: A-08 (resolvido), D-31 e **D-39** (decidido em 19/11/2026: o repositório fica **privado**; a mudança foi deixada para depois).
+1. Antes de mudar, decidam como fica a proteção da `main`: no plano gratuito ela provavelmente **deixa de funcionar** em repositório privado. Opções: seguir só pelo combinado (PR e aprovação do outro, sem trava do GitHub) ou assinar o GitHub Team (cerca de US$ 4 por usuário/mês).
+2. GitHub → repositório `gadogest-sistema` → **Settings** → **General** → fim da página, **Danger Zone** → **Change repository visibility** → **Make private** → confirmar.
+3. Registre na D-39 a data da mudança e a opção escolhida para a proteção da `main`, e mova este aviso para "resolvidos".
 
 ## Avisos resolvidos
 
@@ -48,6 +42,7 @@ Origem: A-08 (resolvido), D-31.
 - **A-03 · Senha do `powersync_role`** — 17/11/2026, Pedro (com o Claude). Senha aleatória gerada sem ser exibida, aplicada no banco só como hash SCRAM e guardada em `powersync/.env` na máquina do Pedro (ignorado pelo Git). Outra máquina que for fazer deploy precisa desse valor por canal privado, ou de uma senha nova.
 - **A-04 · PowerSync ligado ao gadogest-dev** — 17/11/2026, Pedro (com o Claude). `deploy` feito; conexão `connected`, replicação inicial concluída de `teste_animais` e `vinculos`. URL: `https://6afcc9d43224a694a45abf6e.powersync.journeyapps.com`.
 - **A-05 · Usuário e fazenda de teste** — 18/11/2026, Pedro (com o Claude). Usuário `teste@gadogest.com.br` (Auth, confirmado) é **gestor** da "Fazenda de teste" (`00000000-0000-4000-8000-000000000001`), na "Conta de teste", da qual é dono. Vínculo já replicado pelo PowerSync.
+- **A-10 · Passar o login de teste para o Kadu** — 19/11/2026, Pedro. Kadu recebeu a senha por canal privado e entrou no app com `teste@gadogest.com.br`.
 - **A-07 · Revisar as permissões provisórias (D-26) e fechar a Q-20** — 19/11/2026, Kadu (com o Claude). D-26 aprovada sem mudanças; o restante da Q-20 virou a **D-37**. Ajuste do RLS nas próximas etapas: aviso A-11.
 - **A-08 · Proteção da `main` no GitHub** — 19/11/2026, Kadu (com o Claude, pelo `gh`). PR obrigatório com 1 aprovação, sem force push e sem apagar a branch. Funcionou no plano gratuito porque o repositório é público (ver A-12).
 - **A-09 · Serviços em nome da GadoGest** — 19/11/2026, Kadu (com o Claude). Supabase: organização "GadoGest" (plano Free), com o e-mail da GadoGest como único membro (Owner) e o projeto `gadogest-dev`. GitHub e PowerSync já estavam ok. **Expo**: quando for criado, usar o e-mail da GadoGest.
