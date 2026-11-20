@@ -37,7 +37,7 @@ Os dois textos-fonte listam módulos de forma diferente. A tabela os confronta.
 ### 2.1 Autenticação, contas, fazendas e permissões
 - **RF-AUT-01** Login e autenticação de usuários.
 - **RF-AUT-02** Seleção de fazendas no app (um usuário pode precisar alternar entre fazendas). *[PENDENTE: um funcionário pode trabalhar em várias fazendas?]*
-- **RF-AUT-03** Papéis iniciais: **Gestor** e **Funcionário** (matriz definitiva de permissões **[PENDENTE]**).
+- **RF-AUT-03** Papéis iniciais: **Gestor** e **Funcionário** (matriz de permissões **decidida em 19/11/2026**: D-17, D-26 e D-37 em `docs/DECISOES.md`; o funcionário usa só o app e não acessa o painel web).
   - Gestor: gerenciar a propriedade, administrar usuários, gerenciar aparelhos, acessar informações gerenciais, consultar financeiro conforme permissões.
   - Funcionário: acessar informações operacionais autorizadas, registrar atividades de campo, consultar animais e históricos permitidos; **não vê financeiro** quando essa restrição estiver configurada.
 - **RF-AUT-04** Gerenciamento de usuários e vínculos usuário–fazenda (painel).

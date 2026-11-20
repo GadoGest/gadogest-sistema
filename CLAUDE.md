@@ -228,7 +228,7 @@ Lista completa e numerada em `docs/DECISOES.md` (seções "Conflitos" e "Pendên
 
 Ainda abertos:
 - **[CONFLITO]** Módulos descritos como "integrados" no Project × plano técnico que os trata como planejados/pós-MVP (reprodução, alimentação, estoque, relatórios).
-- **[PENDENTE]** Restante da matriz de permissões (Q-20: troca de lote, nascimento, manejos, painel); criptografia do SQLite (Q-16) e custo do PowerSync (Q-17), a validar na Etapa 0; orçamento de infraestrutura (Q-03: começar nos planos gratuitos, decidir antes do piloto); assinatura/limite de aparelhos/cobrança (Q-05, Q-06, Q-09); iPhone no piloto (Q-12); Figma (Q-13).
+- **[PENDENTE]** Criptografia do SQLite (Q-16) e custo do PowerSync (Q-17), a validar na Etapa 0; orçamento de infraestrutura (Q-03: começar nos planos gratuitos, decidir antes do piloto); assinatura/limite de aparelhos/cobrança (Q-05, Q-06, Q-09); iPhone no piloto (Q-12); Figma (Q-13).
 - **Risco técnico (D-22):** o PowerSync usa "última alteração vale" por padrão; o tratamento de conflito de edição como pendência para o gestor precisa ser provado na Etapa 0.
 
 ---

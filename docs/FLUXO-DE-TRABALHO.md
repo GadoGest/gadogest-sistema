@@ -41,7 +41,7 @@ gadogest-sistema/
 - Ao terminar: commit → push da branch → **Pull Request** para a `main` → o outro revisa → merge.
 - Branches **pequenas e curtas** (1 a 3 dias). Quanto mais tempo uma branch fica separada, maior a chance de conflito.
 - **Documentação também passa por PR** (D-31, 16/11/2026): use uma branch `docs/...`; o outro pode aprovar na hora. A antiga exceção "docs direto na `main`" deixou de valer.
-- A `main` é protegida no GitHub (Settings → Branches → exigir Pull Request com 1 aprovação). *Aplicação pendente em 16/11/2026: ver D-31.*
+- A `main` é protegida no GitHub (Settings → Branches → exigir Pull Request com 1 aprovação). *Aplicada em 19/11/2026 (D-31): o merge na `main` só acontece com a aprovação do outro.*
 
 ---
 
